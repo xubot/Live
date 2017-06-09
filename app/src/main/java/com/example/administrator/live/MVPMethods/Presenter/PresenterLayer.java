@@ -2,6 +2,7 @@ package com.example.administrator.live.MVPMethods.Presenter;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.administrator.live.Bean.Banners;
 import com.example.administrator.live.Bean.First_hand;
@@ -341,9 +342,25 @@ public class PresenterLayer {
 
                     @Override
                     public void onNext(User_Reg user_reg) {
-                        Log.d("ooo", user_reg + "u    ddddddddd");
-                        loginView.getUserData(user_reg);
-                        Log.d("ooo", user_reg + "hahahaha");
+                        int ret = user_reg.getRet();
+                        switch (ret){
+                            case 0:
+                                loginView.getUserData(user_reg);
+                                Log.d("ooo", user_reg + "hahahaha");
+                                break;
+                            case -5:
+                                Toast.makeText(logincontext, "手机号码格式错误（不是11位）", Toast.LENGTH_SHORT).show();
+                                break;
+                            case -6:
+                                Toast.makeText(logincontext, "手机号码已注册", Toast.LENGTH_SHORT).show();
+                                break;
+                            case -10:
+                                Toast.makeText(logincontext, "手机号码格式错误", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+
+
+
                     }
 
                     @Override
@@ -385,8 +402,19 @@ public class PresenterLayer {
 
                     @Override
                     public void onNext(User_Check_Rand user_Check_Rand) {
-                        loginView.getUser_CheckData(user_Check_Rand);
-                        Log.d("www", user_Check_Rand.getData().getUname() + ":hahahaha");
+                        int ret = user_Check_Rand.getRet();
+                        switch (ret){
+                            case 0:
+                                loginView.getUser_CheckData(user_Check_Rand);
+                                Log.d("www", user_Check_Rand.getData().getUname() + ":hahahaha");
+                                break;
+                            case -4:
+                                Toast.makeText(logincontext, "无效的session", Toast.LENGTH_SHORT).show();
+                                break;
+                            case -5:
+                                Toast.makeText(logincontext, "验证码错误", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
                     }
 
                     @Override
@@ -400,7 +428,7 @@ public class PresenterLayer {
                     }
                 });
     }
-    //注册的方法
+    //登录 的方法
     public void getUser_Pwd_Login(String url,String usre,String pwd){
         Retrofit retrofit = moudelLayer.getBannerData(url);
         Api api = retrofit.create(Api.class);
@@ -426,8 +454,25 @@ public class PresenterLayer {
 
                     @Override
                     public void onNext(User_Pwd_Login user_pwd_login) {
-                        logView.getuser_pwd_login(user_pwd_login);
-                        Log.d("qqq", user_pwd_login.getData().getSession() + ":hahahaha");
+                        int ret = user_pwd_login.getRet();
+                        switch (ret){
+                            case 0 :
+                                logView.getuser_pwd_login(user_pwd_login);
+                                Log.d("qqq", user_pwd_login.getData().getSession() + ":hahahaha");
+                                break;
+                            case -5:
+                                Toast.makeText(logcontext, "手机号未注册", Toast.LENGTH_SHORT).show();
+                                break;
+                            case -7:
+                                Toast.makeText(logcontext, "密码错误", Toast.LENGTH_SHORT).show();
+                                break;
+                            case -9:
+                                Toast.makeText(logcontext, "连续密码以错5次，将禁止15分钟", Toast.LENGTH_SHORT).show();
+                                break;
+                            case -10:
+                                Toast.makeText(logcontext, "手机号格式不正确", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
                     }
 
                     @Override

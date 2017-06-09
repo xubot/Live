@@ -1,9 +1,6 @@
 package com.example.administrator.live.Activity;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -18,9 +15,9 @@ import com.example.administrator.live.R;
 import com.example.administrator.live.Utils.SharedPreferencesUtils;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginView{
-
-    private SharedPreferencesUtils instance;
+public class LoginActivity extends BaseActivity implements LoginView{
+    //得到数据库的工具类对象
+    private SharedPreferencesUtils instance = SharedPreferencesUtils.getInstance();
     private String url;
     private String usre;
     private String code;
@@ -31,16 +28,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     private EditText login_edit_pwd;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initView() {
         setContentView(R.layout.activity_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.zhihu_toolbar_menu);
-        toolbar.setNavigationIcon(R.mipmap.leftarrow);
-        init();
+        setToolBar("注册页面",R.mipmap.leftarrow,R.color.one,R.menu.zhihu_toolbar_menunull);
+        //得到数据的URL
+        url = (String) instance.getData(LoginActivity.this, "URL", "");
+        Log.d("ooo", url);
     }
 
-    private void init() {
+    @Override
+    protected void init() {
         phone = (EditText) findViewById(R.id.login_edit_usre);
         login_edit_code = (EditText) findViewById(R.id.login_edit_code);
         login_edit_pwd = (EditText) findViewById(R.id.login_edit_pwd);
@@ -49,7 +46,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         getcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                load();
+                Log.d("ooo","load:"+ url);
+                usre = phone.getText().toString().trim();
+                Log.d("ooo", usre);
+                presenterLayer.getUser_Reg(url,usre);
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
@@ -57,31 +57,28 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             public void onClick(View v) {
                 code = login_edit_code.getText().toString();
                 pwd = login_edit_pwd.getText().toString();
-                presenterLayer.getUser_Check_Rand(url,code,pwd);
                 Log.d("www", code + "   " + pwd + "    ");
+                presenterLayer.getUser_Check_Rand(url,code,pwd);
             }
         });
     }
 
-    private void load() {
-        //得到数据库的工具类对象
-        instance = SharedPreferencesUtils.getInstance();
-        //得到数据的URL
-        url = (String) instance.getData(LoginActivity.this, "URL", "");
-        Log.d("ooo","load:"+ url);
-        usre = phone.getText().toString().trim();
-        Log.d("ooo", usre);
+    @Override
+    protected void load() {
         presenterLayer = new PresenterLayer();
         presenterLayer.setLoginView(this);
-        Log.d("ooo", usre);
-        presenterLayer.getUser_Reg(url,usre);
+    }
+
+    @Override
+    public void setToolBar(String name, int img, int color,int menuitem) {
+        super.setToolBar(name, img, color,menuitem);
     }
 
     @Override
     public void getUserData(User_Reg user_reg) {
-        String session18 = user_reg.getData().getSession();
-        instance.saveData(LoginActivity.this,"session",session18);
-        Log.d("ooo", session18+"adassr");
+        String session = user_reg.getData().getSession();
+        instance.saveData(LoginActivity.this,"session",session);
+        Log.d("ooo", session+"adassr");
     }
 
     @Override

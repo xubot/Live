@@ -37,7 +37,7 @@ public class User_Reg {
             return session;
         }
 
-        public void setSession(String _$Session18) {
+        public void setSession(String Session) {
             this.session = session;
         }
     }

@@ -7,24 +7,12 @@
     android:background="#ffffff"
     tools:context="com.example.administrator.live.Activity.LoginActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:background="#00f">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="注册"/>
-    </android.support.v7.widget.Toolbar>
-
-
+    <include
+        android:id="@+id/in"
+        layout="@layout/activity_base"/>
     <RelativeLayout
         android:id="@+id/log_rl"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/in"
         android:layout_width="match_parent"
         android:layout_height="300px">
         <ImageView

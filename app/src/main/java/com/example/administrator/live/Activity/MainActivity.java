@@ -2,16 +2,11 @@ package com.example.administrator.live.Activity;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,7 +24,7 @@ import com.example.administrator.live.Utils.SharedPreferencesUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,ViewLayer {
+public class MainActivity extends BaseActivity implements View.OnClickListener,ViewLayer {
 
     private Fragment fragment;
     private LearningFragment learningFragment;
@@ -41,26 +36,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<LinearLayout> linearLayoutList=new ArrayList<>();
     private List<ImageView> imageViewList=new ArrayList<>();
     //得到保存数据的类
-    private SharedPreferencesUtils instance;
-
+    private SharedPreferencesUtils instance=SharedPreferencesUtils.getInstance();
+    //加载布局
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initView() {
         setContentView(R.layout.activity_main);
-        // 经测试在代码里直接声明透明状态栏更有效
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-        }
-        //得到保存数据的类
-        instance = SharedPreferencesUtils.getInstance();
-        //得到控件
-        init();
-        //得到P层数据的方法
-        load();
+        setToolBar("不一样的世界",R.mipmap.leftarrow,R.color.one,R.menu.zhihu_toolbar_menu);
+    }
+    //设置toolBar
+    @Override
+    public void setToolBar(String name,int img,int color,int menuitem) {
+        super.setToolBar(name,img,color,menuitem);
     }
     //得到控件
-    private void init() {
+    @Override
+    public void init() {
         //得到控件(LinearLayout的控件)
         LinearLayout ll_learnimg = (LinearLayout) findViewById(R.id.ll_learnimg);
         LinearLayout ll_study = (LinearLayout) findViewById(R.id.ll_study);
@@ -73,11 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageView img_learning = (ImageView) findViewById(R.id.img_learning);
         ImageView img_study = (ImageView) findViewById(R.id.img_study);
         ImageView img_mine = (ImageView) findViewById(R.id.img_mine);
-        //设置ToolBar
+        /*//设置ToolBar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.zhihu_toolbar_menu);
-        toolbar.setNavigationIcon(R.mipmap.leftarrow);
-
+        toolbar.setNavigationIcon(R.mipmap.leftarrow);*/
         //向集合中赋值（ textView）
         textViewList.add(learning);
         textViewList.add(course);
@@ -95,6 +84,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             l.setOnClickListener(this);
         }
     }
+    //得到P层数据的方法
+    @Override
+    public void load() {
+        PresenterLayer presenterLayer = new PresenterLayer();
+        presenterLayer.setViewLayer(this);
+        presenterLayer.getFirst_hand();
+    }
+
     //点击监听的地方
     @Override
     public void onClick(View v) {
@@ -159,11 +156,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     //得到P层数据的方法
-    private void load() {
-        PresenterLayer presenterLayer = new PresenterLayer();
-        presenterLayer.setViewLayer(this);
-        presenterLayer.getFirst_hand();
-    }
     //得到第一次握手的数据
     @Override
     public void getFirst_hand(First_hand first_hand) {

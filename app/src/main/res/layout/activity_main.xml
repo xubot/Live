@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
+   <!-- <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,9 +15,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="未来教育"/>
-    </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>-->
 
-
+    <include
+        android:id="@+id/base"
+        layout="@layout/activity_base"/>
     <LinearLayout
         android:id="@+id/ll"
         android:layout_alignParentBottom="true"
@@ -89,7 +91,7 @@
     </LinearLayout>
     <FrameLayout
         android:id="@+id/fl"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/base"
         android:layout_above="@id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
