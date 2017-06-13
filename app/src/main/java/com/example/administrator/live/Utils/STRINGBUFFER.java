@@ -77,7 +77,7 @@ public class STRINGBUFFER {
         return sb;
     }
     //User_Pwd_Login的拼接参数
-    public static StringBuffer setUser_Check_Rand(String private_key, String app_id, Context logcontext,String user,String pwd){
+    public static StringBuffer setUser_Pwd_Login(String private_key, String app_id, Context logcontext,String user,String pwd) {
         StringBuffer sb = new StringBuffer();
         sb.append(private_key)
                 .append(app_id)
@@ -86,6 +86,17 @@ public class STRINGBUFFER {
                 .append(TimeUtil.timeFormatYuzhilai())
                 .append(user)
                 .append(pwd);
+        return sb;
+    }
+    //User_Pwd_Login的拼接参数
+    public static StringBuffer setDetail_Course(String private_key, String app_id, Context showcontext,String object_id){
+        StringBuffer sb = new StringBuffer();
+        sb.append(private_key)
+                .append(app_id)
+                .append(DeviceUtil.getLocaldeviceId(showcontext))
+                .append(URLCLASS.VER_CODE)
+                .append(TimeUtil.timeFormatYuzhilai())
+                .append(object_id);
         return sb;
     }
 }

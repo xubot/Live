@@ -32,14 +32,14 @@
         android:layout_marginTop="30px"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="35dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"
             android:text="手机号码"
+            android:layout_centerVertical="true"
             android:id="@+id/textView"/>
         <EditText
             android:id="@+id/log_edit_usre"
@@ -48,38 +48,53 @@
             android:layout_toRightOf="@+id/textView"
             android:layout_toEndOf="@+id/textView"
             android:layout_marginLeft="20dp"
+            android:background="@null"
+            android:inputType="number"
             android:hint="+85"
+            android:layout_centerVertical="true"
             android:layout_marginStart="15dp"/>
     </RelativeLayout>
 
     <View
         android:layout_below="@id/log_phone"
-        style="@style/Home_View"/>
+        style="@style/Home_View"
+        android:id="@+id/view"/>
     <RelativeLayout
-        android:layout_below="@id/log_phone"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/log_pwd">
+        android:layout_height="35dp"
+        android:id="@+id/log_pwd"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"
             android:text="密码"
-            android:id="@+id/textView"/>
+            android:layout_centerVertical="true"
+            android:id="@+id/log_textView"/>
         <EditText
             android:id="@+id/log_edit_pwd"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="56dp"
             android:hint="密码不能少于6位"
-            android:layout_marginStart="56dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/textView"
-            android:layout_toEndOf="@+id/textView"/>
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:inputType="textPassword"
+            android:layout_toRightOf="@+id/log_textView"
+            android:layout_toEndOf="@+id/log_textView"/>
+
+        <CheckBox
+            android:id="@+id/show_pwd"
+            android:layout_width="25dp"
+            android:layout_height="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:button="@null"
+            android:background="@mipmap/loginnopassword"/>
     </RelativeLayout>
     <View
         android:layout_below="@id/log_pwd"

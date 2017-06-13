@@ -4,11 +4,12 @@
 
     <!-- if you want to load images from the internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
-
     <!-- if you want to load images from a file OR from the internet -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:name=".Utils.AppData"
         android:allowBackup="true"
@@ -40,6 +41,13 @@
 
         <activity android:name=".Activity.BaseActivity">
         </activity>
+        <activity android:name=".Activity.ShowActivity">
+        </activity>
+        <activity android:name=".Activity.TopicActivity">
+        </activity>
+        <activity android:name=".Activity.PayActivity">
+        </activity>
+
     </application>
 
 </manifest>

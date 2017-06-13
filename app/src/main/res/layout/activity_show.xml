@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.live.Activity.ShowActivity">
+
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:id="@+id/videocontroller1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <include layout="@layout/activity_base"/>
+    <!--<ImageView
+        android:layout_width="26.7dp"
+        android:layout_height="26.7dp"
+        android:src="@mipmap/share_normal"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"/>-->
+    <RelativeLayout
+        android:id="@+id/teacher_msg"
+        android:layout_below="@id/videocontroller1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="66.7dp"
+            android:layout_height="66.7dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/teacher_img"/>
+        <TextView
+            android:id="@+id/teacher_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="愚蠢请老师"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@+id/teacher_img"/>
+        <TextView
+            android:id="@+id/teacher_fu_title"
+            android:layout_below="@id/teacher_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="之命媒也顾问"
+            android:layout_toRightOf="@+id/teacher_img"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="33.3dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/coursevoicebox"
+            android:id="@+id/teacher_voice"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/show_view"
+        android:layout_below="@id/teacher_msg"
+        style="@style/Mine_View"/>
+
+    <RelativeLayout
+        android:id="@+id/show_msg"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/show_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/teacher_bstract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:text="愚蠢请老师"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="31dp"
+            android:layout_marginStart="31dp"/>
+        <TextView
+            android:id="@+id/teacher_bstract_twe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:text="之命媒也顾问"
+            android:layout_below="@+id/teacher_bstract"
+            android:layout_alignLeft="@+id/teacher_bstract"
+            android:layout_alignStart="@+id/teacher_bstract"/>
+
+        <TextView
+            android:id="@+id/salesSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="销售量"/>
+    </RelativeLayout>
+    <View
+        android:id="@+id/show_view1"
+        android:layout_below="@id/show_msg"
+        style="@style/Mine_View"/>
+
+
+    <Button
+        android:id="@+id/pay"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="立即支付"/>
+
+</com.zhy.autolayout.AutoRelativeLayout>

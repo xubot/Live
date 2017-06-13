@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.live.Bean.First_hand;
 import com.example.administrator.live.Bean.Host;
@@ -42,12 +44,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     public void initView() {
         setContentView(R.layout.activity_main);
         setToolBar("不一样的世界",R.mipmap.leftarrow,R.color.one,R.menu.zhihu_toolbar_menu);
+        setTransparent();
     }
     //设置toolBar
     @Override
     public void setToolBar(String name,int img,int color,int menuitem) {
         super.setToolBar(name,img,color,menuitem);
     }
+
+    @Override
+    public void setTransparent() {
+        super.setTransparent();
+    }
+
     //得到控件
     @Override
     public void init() {
@@ -192,5 +201,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
         }
         addFragment(learningFragment);
         setBackground(0);
+    }
+    //再按退出
+    private long exitTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() ==
+                KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                        Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.administrator.live.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.administrator.live.Activity.ShowActivity;
 import com.example.administrator.live.Adater.CourseistAdater;
 import com.example.administrator.live.Adater.TopicListAdater;
 import com.example.administrator.live.Adater.TryListAdater;
@@ -101,38 +103,76 @@ public class LearningFragment extends Fragment implements Fragmentview{
             }
         });
     }
+    //免费试听
     @Override
     public void setTryListview(List_Try list_try) {
-        List<List_Try.DataBean.TryBean> aTry = list_try.getData().getTryX();
+        final List<List_Try.DataBean.TryBean> aTry = list_try.getData().getTryX();
         TryListAdater tryListAdater = new TryListAdater(getActivity());
         tryListAdater.setTryDataList(aTry);
         trylistview.setAdapter(tryListAdater);
         setListViewHeight(trylistview);
         trylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private String image;
+            private String object_id;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                for(List_Try.DataBean.TryBean tb:aTry){
+                    object_id = tb.getObject_id();
+                    image = tb.getImage();
+                }
+                Intent intent = new Intent(getActivity(), ShowActivity.class);
+                intent.putExtra("object_id",object_id);
+                intent.putExtra("image",image);
+                intent.putExtra("flag",1);
+                startActivity(intent);
             }
         });
     }
+    //精品课程
     @Override
     public void setCourseListview(List_Course list_course) {
-        List<List_Course.DataBean.CourseBean> courseBeanListr = list_course.getData().getCourse();
+        final List<List_Course.DataBean.CourseBean> courseBeanListr = list_course.getData().getCourse();
         CourseistAdater courseistAdater = new CourseistAdater(getActivity());
         courseistAdater.setCourseDataList(courseBeanListr);
         courselistview.setAdapter(courseistAdater);
         setListViewHeight(courselistview);
+        courselistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private int price;
+            private String object_id;
+            private String image;
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for(List_Course.DataBean.CourseBean cbl:courseBeanListr){
+                    image = cbl.getImage();
+                    object_id = cbl.getObject_id();
+                    price = cbl.getPrice();
+                }
+                Intent intent = new Intent(getActivity(), ShowActivity.class);
+                intent.putExtra("object_id",object_id);
+                intent.putExtra("image",image);
+                intent.putExtra("flag",2);
+                intent.putExtra("price",price);
+                Log.d("tgb", price+"");
+                startActivity(intent);
+            }
+        });
     }
+    //精品专辑
     @Override
-    public void setCourseListview(List_Topic List_topic) {
+    public void setTopicListview(List_Topic List_topic) {
         Log.d("zzz", "setCourseListview");
-        List<List_Topic.DataBean.TopicBean> topicList = List_topic.getData().getTopic();
+        final List<List_Topic.DataBean.TopicBean> topicList = List_topic.getData().getTopic();
         TopicListAdater topicListAdater = new TopicListAdater(getActivity());
         topicListAdater.setTopicDataList(topicList);
         topiclistview.setAdapter(topicListAdater);
         setListViewHeight(topiclistview);
+        topiclistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), "正在更新中", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
     //设置高度(解决冲突)
     public void setListViewHeight(ListView listView) {
         // 获取ListView对应的Adapter

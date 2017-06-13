@@ -5,11 +5,9 @@
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/audioimg"
-        android:layout_width="146.7dp"
-        android:layout_height="133.3dp"
-        android:layout_marginBottom="13.3dp"
-        android:layout_marginTop="13.3dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"/>
    <TextView
@@ -18,12 +16,9 @@
        android:layout_height="wrap_content"
        android:text="专题标题"
        android:textColor="#323232"
-       android:layout_marginLeft="26.7dp"
-       android:layout_alignParentTop="true"
        android:layout_toRightOf="@+id/audioimg"
        android:layout_toEndOf="@+id/audioimg"
-       android:layout_marginStart="24dp"
-       android:layout_marginTop="19dp"/>
+       android:layout_alignTop="@+id/audioimg"/>
     <TextView
         android:id="@+id/title2"
         android:layout_width="wrap_content"
@@ -55,7 +50,5 @@
         android:layout_alignBottom="@+id/free"
         android:layout_toRightOf="@+id/free"
         android:layout_toEndOf="@+id/free"/>
-
-
 
 </com.zhy.autolayout.AutoRelativeLayout>

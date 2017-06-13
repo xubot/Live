@@ -17,7 +17,7 @@
           <com.youth.banner.Banner
               android:id="@+id/br"
               android:layout_width="match_parent"
-              android:layout_height="186.7dp"/>
+              android:layout_height="160dp"/>
           <View
               style="@style/Home_View"/>
           <RelativeLayout

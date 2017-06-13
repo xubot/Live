@@ -16,5 +16,5 @@ public interface Fragmentview {
     void setBanner(Banners banner);
     void setTryListview(List_Try list_try);
     void setCourseListview(List_Course List_course);
-    void setCourseListview(List_Topic List_topic);
+    void setTopicListview(List_Topic List_topic);
 }

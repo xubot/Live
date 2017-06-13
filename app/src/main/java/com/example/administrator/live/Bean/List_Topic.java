@@ -69,7 +69,15 @@ public class List_Topic {
 
         public static class TopicBean {
 
+            public String getObject_id() {
+                return object_id;
+            }
 
+            public void setObject_id(String object_id) {
+                this.object_id = object_id;
+            }
+
+            private String object_id;
             private String title2;
             private String title;
             private String image;

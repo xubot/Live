@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.administrator.live.Bean.Banners;
+import com.example.administrator.live.Bean.Detail_Course;
 import com.example.administrator.live.Bean.First_hand;
 import com.example.administrator.live.Bean.Host;
 import com.example.administrator.live.Bean.List_Course;
@@ -17,6 +18,7 @@ import com.example.administrator.live.MVPMethods.Moudel.MoudelLayer;
 import com.example.administrator.live.MVPMethods.View.Fragmentview;
 import com.example.administrator.live.MVPMethods.View.LogView;
 import com.example.administrator.live.MVPMethods.View.LoginView;
+import com.example.administrator.live.MVPMethods.View.ShowView;
 import com.example.administrator.live.MVPMethods.View.ViewLayer;
 import com.example.administrator.live.Utils.Api;
 import com.example.administrator.live.Utils.First_handUtils.DeviceUtil;
@@ -56,6 +58,8 @@ public class PresenterLayer {
     private Context logcontext;
     private String session;
     private LogView logView;
+    private ShowView showView;
+    private Context showcontext;
 
     //P层构造器
     public PresenterLayer() {
@@ -91,6 +95,14 @@ public class PresenterLayer {
         private_key = (String) instance.getData(logcontext, "private_key", "1");
         //得到app_id
         app_id = (String) instance.getData(logcontext, "app_id", "1");
+    }
+    public void setShowView(ShowView showView) {
+        this.showView = showView;
+        showcontext = showView.getActivityContext();
+        //得到private_key
+        private_key = (String) instance.getData(showcontext, "private_key", "1");
+        //得到app_id
+        app_id = (String) instance.getData(showcontext, "app_id", "1");
     }
 
 
@@ -301,7 +313,7 @@ public class PresenterLayer {
                     @Override
                     public void onNext(List_Topic List_topic) {
                         Log.d("xxx", List_topic + "v    ddddddddd");
-                        fragmentView.setCourseListview(List_topic);
+                        fragmentView.setTopicListview(List_topic);
                     }
 
                     @Override
@@ -442,7 +454,7 @@ public class PresenterLayer {
                 EncoderByMd5.appFistHandToUpperCase(
                         EncoderByMd5.md5Password(
                                 EncoderByMd5.appFistHandAddPwd(
-                                        STRINGBUFFER.setUser_Check_Rand(
+                                        STRINGBUFFER.setUser_Pwd_Login(
                                                 private_key,app_id,logcontext,usre,pwd)))));
         User_Reg.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -473,6 +485,46 @@ public class PresenterLayer {
                                 Toast.makeText(logcontext, "手机号格式不正确", Toast.LENGTH_SHORT).show();
                                 break;
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    //详情的方法
+    public void getDetail_Course(String url,String object_id){
+        Retrofit retrofit = moudelLayer.getBannerData(url);
+        Api api = retrofit.create(Api.class);
+        Observable<Detail_Course> User_Reg = api.getDetail_Course(app_id,
+                DeviceUtil.getLocaldeviceId(showcontext),
+                URLCLASS.VER_CODE,
+                TimeUtil.timeFormatYuzhilai(),
+                object_id,
+                EncoderByMd5.appFistHandToUpperCase(
+                        EncoderByMd5.md5Password(
+                                EncoderByMd5.appFistHandAddPwd(
+                                        STRINGBUFFER.setDetail_Course(
+                                                private_key,app_id,showcontext,object_id)))));
+        User_Reg.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Detail_Course>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Detail_Course detail_course) {
+                        showView.getdetail_course(detail_course);
+                        Log.d("qqq", detail_course.getData().getTitle() + ":hahahaha");
                     }
 
                     @Override

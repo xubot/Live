@@ -1,6 +1,7 @@
 package com.example.administrator.live.Utils;
 
 import com.example.administrator.live.Bean.Banners;
+import com.example.administrator.live.Bean.Detail_Course;
 import com.example.administrator.live.Bean.First_hand;
 import com.example.administrator.live.Bean.Host;
 import com.example.administrator.live.Bean.List_Course;
@@ -95,5 +96,13 @@ public interface Api {
                                                  @Field("mobile")String mobile,
                                                  @Field("passwd")String passwd,
                                                  @Field("sign")String sign);
+    @POST("app/v1/detail_course")
+    @FormUrlEncoded
+    Observable<Detail_Course> getDetail_Course(@Field("app_id") String app_id,
+                                               @Field("dev_id")String dev_id,
+                                               @Field("ver_code")int ver_code,
+                                               @Field("tick")String tick,
+                                               @Field("object_id")String object_id,
+                                               @Field("sign")String sign);
 
 }

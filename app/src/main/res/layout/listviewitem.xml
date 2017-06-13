@@ -2,16 +2,13 @@
 <com.zhy.autolayout.AutoRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="15dp">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/audioimg"
-        android:layout_width="146.7dp"
-        android:layout_height="133.3dp"
-        android:layout_marginBottom="13.3dp"
-        android:layout_marginTop="13.3dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"/>
     <TextView
@@ -31,8 +28,6 @@
         android:text="课程名称"
         android:textSize="32px"
         android:textColor="#323232"
-        android:layout_marginLeft="26.7dp"
-        android:layout_marginStart="20dp"
         android:id="@+id/title1"
         android:layout_alignTop="@+id/audioimg"
         android:layout_toRightOf="@+id/audioimg"
@@ -41,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="课程副标题"
-        android:textSize="26px"
+        android:textSize="10dp"
         android:textColor="#808080"
         android:layout_marginTop="13.3dp"
         android:id="@+id/title2"
@@ -55,19 +50,16 @@
         android:text="讲师名"
         android:textSize="28px"
         android:id="@+id/speaker"
-        android:layout_below="@+id/title2"
-        android:layout_alignLeft="@+id/title2"
-        android:layout_alignStart="@+id/title2"
-        android:layout_marginTop="40px"/>
+        android:layout_above="@+id/length"
+        android:layout_toRightOf="@+id/audioimg"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="免费"
         android:id="@+id/free"
         android:textColor="#ffd300"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_alignBaseline="@+id/length"
-        android:layout_alignBottom="@+id/length"
         android:layout_alignLeft="@+id/speaker"
         android:layout_alignStart="@+id/speaker"/>
     <TextView

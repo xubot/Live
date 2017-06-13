@@ -21,6 +21,7 @@
                     android:id="@+id/mine_img"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:layout_centerVertical="true"
                     android:layout_marginBottom="40px"
                     android:layout_marginLeft="30px"
                     android:layout_marginTop="40px"
@@ -31,8 +32,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40px"
-                    android:layout_marginTop="30dp"
                     android:layout_toRightOf="@+id/mine_img"
+                    android:layout_marginTop="30dp"
                     android:text="未登录"
                     android:textSize="21.3dp"/>
 
@@ -54,13 +55,11 @@
             </RelativeLayout>
 
             <View
-                android:background="#f4f4f4"
-                android:layout_width="match_parent"
-                android:layout_height="13.3dp"/>
+                style="@style/Mine_View"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110px">
+                android:layout_height="40dp">
                 <ImageView
                     android:id="@+id/mine_download"
                     style="@style/Mine_Img"
@@ -77,7 +76,7 @@
                 style="@style/Home_View"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp">
+                android:layout_height="40dp">
                 <ImageView
                     android:id="@+id/mine_collection"
                     style="@style/Mine_Img"
@@ -94,7 +93,7 @@
                 style="@style/Home_View"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110px">
+                android:layout_height="40dp">
                 <ImageView
                     android:id="@+id/mine_account"
                     style="@style/Mine_Img"
@@ -111,7 +110,7 @@
                 style="@style/Home_View"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110px">
+                android:layout_height="40dp">
                 <ImageView
                     android:id="@+id/mine_purchase"
                     style="@style/Mine_Img"
@@ -128,7 +127,7 @@
                 style="@style/Home_View"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110px">
+                android:layout_height="40dp">
                 <ImageView
                     android:id="@+id/mine_news"
                     style="@style/Mine_Img"
@@ -142,33 +141,30 @@
                     android:src="@mipmap/commonrightarro"/>
             </RelativeLayout>
             <View
-                android:background="#f4f4f4"
-                android:layout_width="match_parent"
-                android:layout_height="13.3dp"/>
+                style="@style/Mine_View"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110px">
+                android:layout_height="40dp">
                 <ImageView
-                    android:id="@+id/mine_vip"
+                    android:id="@+id/mine_vip1"
                     style="@style/Mine_Img"
-                    android:src="@mipmap/minevip"/>
+
+                       android:src="@mipmap/minevip"/>
                 <TextView
                     style="@style/Mine_text"
-                    android:layout_toRightOf="@id/mine_vip"
+                    android:layout_toRightOf="@id/mine_vip1"
                     android:text="VIP专享"/>
                 <ImageView
                     style="@style/Mine_Imger"
                     android:src="@mipmap/commonrightarro"/>
             </RelativeLayout>
             <View
-                android:background="#f4f4f4"
-                android:layout_width="match_parent"
-                android:layout_height="13.3dp"/>
+                style="@style/Mine_View"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110px">
+                android:layout_height="40dp">
 
                 <ImageView
                     android:id="@+id/mine_install"
@@ -188,7 +184,7 @@
                 style="@style/Home_View"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="110px">
+                android:layout_height="40dp">
 
                 <ImageView
                     android:id="@+id/mine_phone"

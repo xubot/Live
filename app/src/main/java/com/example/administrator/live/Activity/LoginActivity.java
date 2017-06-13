@@ -1,11 +1,14 @@
 package com.example.administrator.live.Activity;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.live.Bean.User_Check_Rand;
 import com.example.administrator.live.Bean.User_Reg;
@@ -26,14 +29,36 @@ public class LoginActivity extends BaseActivity implements LoginView{
     private PresenterLayer presenterLayer;
     private EditText login_edit_code;
     private EditText login_edit_pwd;
+    private int time=10;
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if(time==0){
+                Toast.makeText(LoginActivity.this, "您的验证码是：9998", Toast.LENGTH_SHORT).show();
+                getcode.setText("重新获取");
+                time=10;
+            }else {
+                time--;
+                getcode.setText(time+"秒");
+                handler.sendEmptyMessageDelayed(time,1000);
+            }
+        }
+    };
+    private TextView getcode;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_login);
         setToolBar("注册页面",R.mipmap.leftarrow,R.color.one,R.menu.zhihu_toolbar_menunull);
+        setTransparent();
         //得到数据的URL
         url = (String) instance.getData(LoginActivity.this, "URL", "");
         Log.d("ooo", url);
+    }
+
+    @Override
+    public void setTransparent() {
+        super.setTransparent();
     }
 
     @Override
@@ -41,7 +66,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         phone = (EditText) findViewById(R.id.login_edit_usre);
         login_edit_code = (EditText) findViewById(R.id.login_edit_code);
         login_edit_pwd = (EditText) findViewById(R.id.login_edit_pwd);
-        TextView getcode= (TextView) findViewById(R.id.getcode);
+        getcode = (TextView) findViewById(R.id.getcode);
         ImageView login= (ImageView) findViewById(R.id.login);
         getcode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +75,8 @@ public class LoginActivity extends BaseActivity implements LoginView{
                 usre = phone.getText().toString().trim();
                 Log.d("ooo", usre);
                 presenterLayer.getUser_Reg(url,usre);
+                getcode.setText(time+"秒");
+                handler.sendEmptyMessageDelayed(time,1000);
             }
         });
         login.setOnClickListener(new View.OnClickListener() {

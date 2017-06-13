@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.live.Activity.TopicActivity">
+
+    <RelativeLayout
+        android:id="@+id/topic_"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:src="@mipmap/leftarrow"/>
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text=""/>
+    </RelativeLayout>
+</RelativeLayout>
